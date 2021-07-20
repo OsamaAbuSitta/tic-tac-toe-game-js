@@ -22,17 +22,17 @@
     color: #eeeeee;
 }
 
-.header__turn {
+.header-turn {
     padding: 12px;
 }
 
-.header__status {
+.header-status {
     padding: 12px;
     flex-grow: 1;
     text-align: center;
 }
 
-.header__restart {
+.header-restart {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -52,7 +52,7 @@
     grid-template-rows: repeat(3, 1fr);
 }
 
-.board__tile {
+.board-tile {
     background: #ffffff;
     cursor: pointer;
     display: flex;
@@ -63,10 +63,10 @@
     color: #222222;
 }
 
-.board__tile:hover {
+.board-tile:hover {
     background: #eeeeee;
 }
 
-.board__tile--winner {
+.board-tile--winner {
     color: green;
 }
