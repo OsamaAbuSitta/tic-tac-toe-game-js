@@ -34,6 +34,7 @@ export default class Game {
         if (this.gameMode == 0 && this.turn == 'O'){
 
             this.play();
+            this.nextTurn();
         }
 
 
