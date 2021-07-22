@@ -18,19 +18,21 @@ export default class Game {
 
     makeMove(i) {
         if (!this.isInProgress())
-            return
+            return false;
 
 
         if (this.board[i])
-            return;
+            return false;
 
         this.board[i] = this.turn;
 
         if (this.findWinningCombination())
-            return;
+            return false;
 
 
         this.nextTurn();
+
+        return true;
     }
 
    innerFindWinningCombination() {

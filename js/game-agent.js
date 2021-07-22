@@ -53,31 +53,16 @@ export default class GameAgent {
 
         available = available.map(a => a.index);
 
-        if(isMaximizing){
-
-            let bestScore =  -Infinity;
+        let bestScore =  isMaximizing ? -Infinity : Infinity;
             
-            for (let index of available) {
-                gameStatusShadow.board[index] = 'O';
-                let score = this.miniMax(gameStatusShadow, false);
-                gameStatusShadow.board[index] = null;
-                bestScore =Math.max(score, bestScore);
-            }
-    
-            return bestScore;
-
-        }else{
-            let bestScore = Infinity;
-            
-            for (let index of available) {
-                gameStatusShadow.board[index] ='X';
-                let score = this.miniMax(gameStatusShadow, true);
-                gameStatusShadow.board[index] = null;
-                bestScore = Math.min(score, bestScore);
-            }
-    
-            return bestScore;
+        for (let index of available) {
+            gameStatusShadow.board[index] =   isMaximizing ? 'O':'X';
+            let score = this.miniMax(gameStatusShadow,   !isMaximizing );
+            gameStatusShadow.board[index] = null;
+            bestScore =  isMaximizing ? Math.max(score, bestScore) : Math.min(score, bestScore);
         }
+
+        return bestScore;
         
     }
 
