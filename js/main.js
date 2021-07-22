@@ -2,7 +2,7 @@ import Game from "./game.js";
 import GameView from "./game-view.js";
 import GameAgent from "./game-agent.js";
 
-let game = new Game('Your','AI');
+let game = new Game('Your','Program');
 let gameView = new GameView(document.getElementById('app'));
 let gameAgent  = new GameAgent(game,gameView);
 //define view functions

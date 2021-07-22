@@ -28,6 +28,12 @@ export default class GameAgent {
         let bestScore = -1;
         for(let index of available){
             this.gameStatusShadow.board[index] = 'O';
+            
+            if ( this.gameStatusShadow.findWinningCombination()){
+                this.gameStatusShadow.board[index] = null; 
+                return index;   
+            }
+
             let score = this.miniMax(this.gameStatusShadow, false);
             this.gameStatusShadow.board[index] = null;
             if(score > bestScore) {
@@ -42,7 +48,7 @@ export default class GameAgent {
 
     miniMax(gameStatusShadow, isMaximizing) {
         if (gameStatusShadow.findWinningCombination())
-            return isMaximizing ? -1 : 1;
+            return isMaximizing ? -Infinity : Infinity;
 
         let available = gameStatusShadow.board.map((p, index) => { return { value: p, index: index } })
             .filter(p => !p.value);
