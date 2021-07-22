@@ -8,6 +8,7 @@ export default class Game {
         this.currentPlayer = this.player1;
         this.turn = "X";
         this.board = new Array(9).fill(null);
+        this.findWinningCombination = this.innerFindWinningCombination;
     }
 
     nextTurn() {
@@ -30,16 +31,9 @@ export default class Game {
 
 
         this.nextTurn();
-
-        if (this.gameMode == 0 && this.turn == 'O'){
-            this.play();
-            this.nextTurn();
-        }
-
-
     }
 
-    findWinningCombination() {
+   innerFindWinningCombination() {
         const winningCombinations = [
             [0, 1, 2],
             [3, 4, 5],
@@ -65,20 +59,5 @@ export default class Game {
     isInProgress() {
         return !this.findWinningCombination() && this.board.includes(null);
     }
-
-    play() {
-        let bestMove = this.bestMove();
-        this.board[bestMove] = 'O';
-        this.makeMove(bestMove);
-    }
-
-    bestMove() {
-        let available = this.board.map((p, index) => { return { value: p, index: index } })
-            .filter(p => !p.value);
-        let random = Math.floor(Math.random() * available.length);
-        let move = available[random].index;
-        return move;
-    }
-
 
 }
